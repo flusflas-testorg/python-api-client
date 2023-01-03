@@ -43,7 +43,7 @@ def get_token(host: str, client_id: str, client_secret: str, scopes: list) -> To
     client_credentials grant.
     If the request fails, an OAuth2Error will be raised.
 
-    :param host:            Host URL
+    :param host:            Host URL.
     :param client_id:       Client ID.
     :param client_secret:   Client Secret.
     :param scopes:          List of scopes to request.
