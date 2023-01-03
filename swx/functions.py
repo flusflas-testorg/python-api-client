@@ -41,8 +41,8 @@ class Things:  # class to work with Things
         self.value = None
 
     def get(self):
-        URL = generate_thing_url(self.token, self.space, self.category, self.id)
-        return get_info(URL, self.token)
+        url = generate_thing_url(self.token, self.space, self.category, self.id)
+        return get_info(url, self.token)
 
     def create(self, value):
         pass
@@ -72,22 +72,22 @@ class Properties:
             e = ResponseError(400, "Cannot recover Properties info, ThingID is missing")
             print(e)
             return e
-        URL = generate_properties_url(self.thing.token, self.thing.space, self.thing.category, self.thing.id,
+        url = generate_properties_url(self.thing.token, self.thing.space, self.thing.category, self.thing.id,
                                       self.property_name)
-        return get_info(URL, self.thing.token)
+        return get_info(url, self.thing.token)
 
     def update(self, value):
         if self.thing.id == "":
             e = ResponseError(400, "Cannot update Properties, ThingID is missing")
             print(e)
             return e
-        URL = generate_properties_url(self.thing.token, self.thing.space, self.thing.category, self.thing.id,
+        url = generate_properties_url(self.thing.token, self.thing.space, self.thing.category, self.thing.id,
                                       self.property_name)
         if self.property_name == "":
-            return post_info(URL, self.thing.token, value)
+            return post_info(url, self.thing.token, value)
         else:
             json_value = {self.property_name: value}
-            return post_info(URL, self.thing.token, json_value)
+            return post_info(url, self.thing.token, json_value)
 
 
 # the function 'get_info' is used to make GET requests
@@ -125,23 +125,23 @@ def delete_info(url: str, token):
 
 
 def generate_url(token: Token, space: str, category=""):
-    URL = urljoin(token.host, "/beta/spaces/" + space)
+    url = urljoin(token.host, "/spaces/" + space)
     if category != "":
-        URL += "/categories/" + category
-    return URL
+        url += "/categories/" + category
+    return url
 
 
 def generate_thing_url(token: Token, space: str, category: str, thing_id: str):
-    URL = generate_url(token, space, category)
-    URL += "/things"
+    url = generate_url(token, space, category)
+    url += "/things"
     if thing_id != "":
-        URL += "/" + thing_id
-    return URL
+        url += "/" + thing_id
+    return url
 
 
 def generate_properties_url(token: Token, space: str, category: str, thing_id: str, property_name: str):
-    URL = generate_thing_url(token, space, category, thing_id)
-    URL += "/properties"
+    url = generate_thing_url(token, space, category, thing_id)
+    url += "/properties"
     if property_name != "":
-        URL += "/" + property_name
-    return URL
+        url += "/" + property_name
+    return url
