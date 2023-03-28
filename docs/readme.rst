@@ -2,7 +2,7 @@
    :format: html
 
 
-Introduction 2
+Introduction 3
 --------------
 
 This library allows you to interact with the SmartWorks API using Python.
