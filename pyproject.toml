@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "swx"
 version = "0.0.6"
-description = "A Python client for the Altair SmartWorks API"
+description = "A Python client for the Altair SmartWorks API -"
 authors = ["Daniel Sánchez Gallego <dsanchez@altair.com>"]
 readme = "README.md"
 documentation = "https://python-api-client.readthedocs.io/en/latest/swx.html"
