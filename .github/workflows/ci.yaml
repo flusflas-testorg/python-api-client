@@ -43,7 +43,7 @@ jobs:
 
       - name: ls 1
         run: |
-          la -la
+          ls -la
 
       - name: Run tests
         run: |
@@ -51,7 +51,7 @@ jobs:
 
       - name: ls 1
         run: |
-          la -la
+          ls -la
 
       - name: Upload coverage to Codecov
         if: ${{ matrix.python-version == '3.7' }}
