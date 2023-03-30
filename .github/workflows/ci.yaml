@@ -48,6 +48,7 @@ jobs:
       - name: Run tests
         run: |
           poetry run pytest --cov -v
+          poetry env remove .
 
       - name: ls 1
         run: |
