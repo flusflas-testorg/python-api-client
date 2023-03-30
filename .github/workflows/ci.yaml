@@ -43,14 +43,11 @@ jobs:
 
       - name: Run tests
         run: |
-          poetry run pytest -v
+          poetry run pytest --cov -v
 
-#      - name: Test
-#        run: go test -race -coverprofile=coverage.txt -covermode=atomic ./...
-#
-#      - name: Upload coverage to Codecov
-#        if: ${{ matrix.go == 'latest' }}
-#        uses: codecov/codecov-action@v3
+      - name: Upload coverage to Codecov
+        if: ${{ matrix.go == '3.7' }}
+        uses: codecov/codecov-action@v3
 
 #  lint:
 #    name: Lint
