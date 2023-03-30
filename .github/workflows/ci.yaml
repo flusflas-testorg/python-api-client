@@ -41,9 +41,17 @@ jobs:
         run: |
           poetry install
 
+      - name: ls 1
+        run: |
+          la -la
+
       - name: Run tests
         run: |
           poetry run pytest --cov -v
+
+      - name: ls 1
+        run: |
+          la -la
 
       - name: Upload coverage to Codecov
         if: ${{ matrix.python-version == '3.7' }}
