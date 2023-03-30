@@ -46,7 +46,7 @@ jobs:
           poetry run pytest --cov -v
 
       - name: Upload coverage to Codecov
-        if: ${{ matrix.go == '3.7' }}
+        if: ${{ matrix.python-version == '3.7' }}
         uses: codecov/codecov-action@v3
 
 #  lint:
