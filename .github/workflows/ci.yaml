@@ -32,6 +32,7 @@ jobs:
           virtualenvs-create: true
           virtualenvs-in-project: true
           installer-parallel: true
+        run: poetry install --no-interaction --no-root
 
       - name: Load cached venv
         id: cached-poetry-dependencies
@@ -40,16 +41,13 @@ jobs:
           path: .venv
           key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
 
-      - name: Install dependencies
-        if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
-        run: poetry install --no-interaction --no-root
-
       - name: ls 1
         run: |
           ls -la
 
       - name: Run tests
         run: |
+          source .venv/bin/activate
           pytest --cov --cov-report=xml -v
 
       - name: ls 1
