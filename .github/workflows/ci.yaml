@@ -47,8 +47,7 @@ jobs:
 
       - name: Run tests
         run: |
-          poetry run pytest --cov -v
-          rm -R .venv
+          poetry run pytest --cov --cov-report=xml -v
 
       - name: ls 1
         run: |
