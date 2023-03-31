@@ -29,11 +29,17 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install poetry
-          poetry export --without-hashes --format=requirements.txt > requirements.txt
+          poetry config virtualenvs.in-project true
+
+      - name: Cache the virtualenv
+        uses: actions/cache@v2
+        with:
+          path: ./.venv
+          key: ${{ runner.os }}-venv-${{ hashFiles('**/poetry.lock') }}
 
       - name: Install dependencies
         run: |
-          pip install -r requirements.txt
+          poetry install
 
       - name: ls 1
         run: |
@@ -41,7 +47,7 @@ jobs:
 
       - name: Run tests
         run: |
-          pytest --cov --cov-report=xml -v
+          poetry run pytest --cov --cov-report=xml -v
           rm -R .venv
 
       - name: ls 1
