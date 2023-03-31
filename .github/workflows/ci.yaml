@@ -26,7 +26,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
 
       - name: Setup poetry
-        uses: abatilo/actions-poetry@v2
+        uses: snok/install-poetry@v1
 
       - name: ls 1
         run: |
